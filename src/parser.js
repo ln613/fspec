@@ -1,10 +1,9 @@
 const tmp = require('./templates');
 
 module.exports = function (source) {
-  const [i, o] = source.split('=>');
-  const ev = 'click';
-  const name = 'add';
+  const [input, output] = source.split('=>');
+  const [verb, ...args] = input.split(' ');
   return `
-  window.onload = () => document.getElementsByName('${name}')[0].addEventListener('${ev}', () => alert('abc'));
+  window.onload = () => document.getElementsByName('${args[0]}')[0].addEventListener('${verb}', () => alert('ab'));
 `;
 }

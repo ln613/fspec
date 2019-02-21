@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --content-base www/"
+    "start": "webpack-dev-server --progress --content-base www/ --hot"
   },
   "author": "Nan Li",
   "license": "ISC",

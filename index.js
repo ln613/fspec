@@ -1,3 +1,5 @@
+import './src/fspec-loader';
 import './1.fspec';
 
-//console.log(f1(100));
+//window.onload=A();
+//console.log(A);

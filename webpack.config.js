@@ -1,19 +1,20 @@
 var webpack = require('webpack');
 var path = require('path');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: __dirname,
   entry: [
-    'webpack-hot-middleware/client?reload=true',
     './index.js'
   ],
   output: {
     path: path.join(__dirname, 'www'),
     filename: 'bundle.js'
+    //filename: '[name].[contenthash].js'
   },
   devServer: {
-    port: 9020,
-    hot: true
+    port: 9020
   },
   module: {
     loaders: [
@@ -31,11 +32,11 @@ module.exports = {
       }
     ]
   },
+  // plugins: [
+  //   new CleanWebpackPlugin(['dist']),
+  //   new HtmlWebpackPlugin({title: 'Caching'})
+  // ],
   resolveLoader: {
     modules: ['node_modules', path.join(__dirname, 'src')]
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  }
 };
-

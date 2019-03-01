@@ -1,10 +1,11 @@
-var parse = require('./parser');
-
-const a1 = () => alert('jkl');
-const o1 = { a: 'a1', b: 'b1', a1 };
-
-module.exports = function (source) {
-  var data = this.options.context + '/data.json';
-  return "window.data = " + JSON.stringify(o1);
-  //return parse(source, require(data));
+module.exports = source => {
+  const [input, output] = source.split('=>');
+  const [action, elementName] = input.split(' ');
+  const [variable, exp] = output.split('=').map(x => x.trim());
+  const [op1, operator, op2] = exp.split(' ').map(x => x.trim());
+  
+  return [{
+    input: { action, elementName },
+    output: { variable, op1, op2 }
+  }];
 }

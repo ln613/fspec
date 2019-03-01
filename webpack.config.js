@@ -28,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.fspec/,
-        loader: 'fspec-loader'
+        loader: 'raw-loader!fspec-loader'
       }
     ]
   },

@@ -1,1 +1,1 @@
-click add => z = x + y 
+click "add" => show message "hello";

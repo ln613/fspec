@@ -10,8 +10,25 @@ import { getByName } from './src/utils';
 
 window.onload = () => {
   rules.forEach(r => {
+    let output = null;
+    
+    if (r.output.action) {
+      if (r.output.action === 'show message') output = () => alert(r.output.target);
+    } else if (r.output.result) {
+      output = () => {
+        data[r.output.result] = evalBinaryExp(r.output, data);
+        document.getElementsByName(r.output.result)[0].value = data[r.output.result];
+      }
+    }
+
     if (r.input.action === 'click') {
-      getByName(r.input.target)[0].addEventListener(r.input.action, () => alert(r.output.target));
+      getByName(r.input.target)[0].addEventListener(r.input.action, output);
     }
   })
+}
+
+const evalBinaryExp = (p, data) => {console.log(p)
+  if (p.expression.operator === '+') return data[p.expression.op1] + data[p.expression.op2];
+  if (p.expression.operator === '-') return data[p.expression.op1] - data[p.expression.op2];
+  if (p.expression.operator === '*') return data[p.expression.op1] * data[p.expression.op2];
 }

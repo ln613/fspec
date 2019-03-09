@@ -10,10 +10,20 @@ vi = "lose focus"
 
 name = '"' x:[a-z]+ '"' { return x.join(''); }
 
-output = reaction
+output = assignment / reaction
 
 reaction = action:rvt ws target:name { return { action, target }; }
 
 rvt = "show message"
+
+assignment = result:name ws "=" ws expression:expression { return { result, expression }; }
+
+expression = binaryExp
+
+binaryExp = op1:operand ws operator:operator ws op2:operand { return { op1, operator, op2 }; }
+
+operand = name
+
+operator = "+" / "-" / "*"
 
 ws "whitespace" = [ \t\n\r]*
